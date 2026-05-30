@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ParaPerros – Accesorios con Estilo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #1a1a1a;
+      background: #fafaf8;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 2rem;
+      border-bottom: 1px solid #eee;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .nav-brand img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+    .nav-cta {
+      background: #C0623A;
+      color: #fff;
+      padding: 0.5rem 1.1rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #8B3A1F; }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 2rem;
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-text h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+    .hero-text h1 em { color: #C0623A; font-style: normal; }
+    .hero-text p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1.8rem;
+      line-height: 1.6;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: #C0623A;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #8B3A1F; }
+    .btn-secondary {
+      background: #fff;
+      color: #C0623A;
+      border: 2px solid #C0623A;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: #F2D5C4; }
+
+    /* VALORES */
+    .valores {
+      background: #C0623A;
+      color: #fff;
+      padding: 3rem 2rem;
+    }
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .valor { text-align: center; }
+    .valor .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .valor h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .valor p { font-size: 0.88rem; opacity: 0.85; line-height: 1.5; }
+
+    /* PRODUCTOS */
+    .productos {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-header { text-align: center; margin-bottom: 2.5rem; }
+    .section-header h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .section-header p { color: #666; font-size: 1rem; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body { padding: 1.3rem; }
+    .card-badge {
+      display: inline-block;
+      background: #F2D5C4;
+      color: #8B3A1F;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.9rem; color: #555; line-height: 1.55; margin-bottom: 1rem; }
+    .card a.consultar {
+      display: inline-block;
+      background: #C0623A;
+      color: #fff;
+      padding: 0.55rem 1.1rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: background 0.2s;
+    }
+    .card a.consultar:hover { background: #8B3A1F; }
+
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, #8B3A1F 0%, #C0623A 100%);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .cta h2 { font-size: 2rem; margin-bottom: 0.75rem; }
+    .cta p { opacity: 0.88; margin-bottom: 1.8rem; font-size: 1.05rem; }
+    .cta a {
+      background: #25D366;
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .cta a:hover { background: #1da851; }
+
+    /* FOOTER */
+    footer {
+      background: #1a1a1a;
+      color: #ccc;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.9rem;
+    }
+    footer .brand { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    footer p { margin-bottom: 0.4rem; }
+    footer a { color: #E8927A; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer .copy { margin-top: 1rem; font-size: 0.8rem; opacity: 0.6; }
+
+    /* WHATSAPP FLOAT */
+    .wa-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #25D366;
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.5);
+      z-index: 200;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .wa-float:hover { background: #1da851; transform: scale(1.04); }
+
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-brand" href="#">
+    <img src="fotos/LOGO.png" alt="ParaPerros">
+  </a>
+  <a class="nav-cta" href="https://wa.me/5493465651267" target="_blank">Chatear por WhatsApp</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Tu perro se merece lo <em>mejor</em> — con estilo.</h1>
+    <p>Arneses ergonómicos, collares, chapitas personalizadas y más. Diseñados con amor, fabricados para durar.</p>
+    <div class="hero-buttons">
+      <a class="btn-primary" href="#productos">Ver catálogo ↓</a>
+      <a class="btn-secondary" href="https://wa.me/5493465651267" target="_blank">Consultar precio</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="fotos/PORTADA.jpeg" alt="ParaPerros - Accesorios para mascotas" style="width:100%;border-radius:1rem;object-fit:cover;max-height:400px;">
+  </div>
+</section>
+
+<!-- VALORES -->
+<section class="valores">
+  <div class="valores-grid">
+    <div class="valor">
+      <div class="icon">🐕</div>
+      <h3>Diseño ergonómico</h3>
+      <p>No presiona el cuello ni las escápulas. Respeta el movimiento natural.</p>
+    </div>
+    <div class="valor">
+      <div class="icon">🧵</div>
+      <h3>Confección artesanal</h3>
+      <p>Cada pieza cosida con dedicación y materiales de primera calidad.</p>
+    </div>
+    <div class="valor">
+      <div class="icon">✅</div>
+      <h3>Resistencia total</h3>
+      <p>Cinta de poliéster resistente y suave para el uso cotidiano.</p>
+    </div>
+    <div class="valor">
+      <div class="icon">💬</div>
+      <h3>Atención personalizada</h3>
+      <p>Asesoramiento directo por WhatsApp para encontrar el talle ideal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="productos" id="productos">
+  <div class="section-header">
+    <h2>Nuestros productos</h2>
+    <p>Todo lo que tu perro necesita. Cada accesorio está pensado para combinar comodidad, seguridad y estilo.</p>
+  </div>
+
+  <div class="cards">
+
+    <!-- Card 1: Pretales H -->
+    <div class="card">
+      <img src="fotos/PRETALES H.jpeg" alt="Arneses en H para perros">
+      <div class="card-body">
+        <span class="card-badge">⭐ Más vendido</span>
+        <h3>Arneses en "H"</h3>
+        <p>Diseño ergonómico que no presiona el cuello ni las escápulas. Fabricados en <strong>cinta de poliéster resistente y suave</strong>, respetan el movimiento natural del perro para paseos seguros y cómodos.</p>
+        <a class="consultar" href="https://wa.me/5493465651267?text=Hola!%20Me%20interesa%20consultar%20por%20los%20Arneses%20en%20H%20🐾" target="_blank">Consultar precio →</a>
+      </div>
+    </div>
+
+    <!-- Card 2: Collares -->
+    <div class="card">
+      <img src="fotos/COLLARES.jpeg" alt="Collares para perros">
+      <div class="card-body">
+        <h3>Collares</h3>
+        <p>Confeccionados con el mayor cuidado y los mejores materiales. Resistentes, duraderos y con un acabado impecable que refleja la calidad de cada costura.</p>
+        <a class="consultar" href="https://wa.me/5493465651267?text=Hola!%20Me%20interesa%20consultar%20por%20los%20Collares%20🐾" target="_blank">Consultar precio →</a>
+      </div>
+    </div>
+
+    <!-- Card 3: Chapitas -->
+    <div class="card">
+      <img src="fotos/CHAPITAS DE IDENTIFICACIÓN.jpeg" alt="Chapitas identificatorias para perros">
+      <div class="card-body">
+        <h3>Chapitas Identificatorias</h3>
+        <p>Personalizadas con el nombre de tu perro y número de teléfono grabado en <strong>resina de alta calidad</strong>. La seguridad extra que todo dueño necesita.</p>
+        <a class="consultar" href="https://wa.me/5493465651267?text=Hola!%20Me%20interesa%20consultar%20por%20las%20Chapitas%20Identificatorias%20🐾" target="_blank">Consultar precio →</a>
+      </div>
+    </div>
+
+    <!-- Card 4: Correas -->
+    <div class="card">
+      <img src="fotos/CORREAS.jpeg" alt="Correas para perros">
+      <div class="card-body">
+        <h3>Correas</h3>
+        <p><strong>3 metros de largo reforzadas</strong> para mayor libertad de movimiento en paseos y espacios abiertos. Resistentes y con herrajes de calidad.</p>
+        <a class="consultar" href="https://wa.me/5493465651267?text=Hola!%20Me%20interesa%20consultar%20por%20las%20Correas%20🐾" target="_blank">Consultar precio →</a>
+      </div>
+    </div>
+
+    <!-- Card 5: Pelotas de Olfato -->
+    <div class="card">
+      <img src="fotos/PELOTAS DE OLFATO.jpeg" alt="Pelotas de olfato para perros">
+      <div class="card-body">
+        <h3>Pelotas de Olfato</h3>
+        <p>Calidad premium y totalmente <strong>aptas para lavado y secado en máquina</strong>. Estimulan el instinto natural y mantienen a tu perro activo y feliz.</p>
+        <a class="consultar" href="https://wa.me/5493465651267?text=Hola!%20Me%20interesa%20consultar%20por%20las%20Pelotas%20de%20Olfato%20🐾" target="_blank">Consultar precio →</a>
+      </div>
+    </div>
+
+    <!-- Card 6: Sogas Flex -->
+    <div class="card">
+      <img src="fotos/SOGAS FLEX.jpeg" alt="Sogas Flex para perros">
+      <div class="card-body">
+        <h3>Sogas Flex</h3>
+        <p><strong>100% algodón natural.</strong> El juguete más divertido para los perros: seguro, resistente y perfecto para jugar a tirar y jalar. ¡Horas de diversión garantizadas!</p>
+        <a class="consultar" href="https://wa.me/5493465651267?text=Hola!%20Me%20interesa%20consultar%20por%20las%20Sogas%20Flex%20🐾" target="_blank">Consultar precio →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA WHATSAPP -->
+<section class="cta">
+  <h2>¿Listo para comprar?</h2>
+  <p>Nuestro catálogo completo con precios, talles y disponibilidad te espera en el chat. Te respondemos rápido.</p>
+  <a href="https://wa.me/5493465651267?text=Hola!%20Vi%20su%20página%20y%20me%20gustaría%20ver%20el%20catálogo%20completo%20con%20precios%20🐾" target="_blank">Ir al catálogo por WhatsApp</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand"><img src="fotos/LOGO.png" alt="ParaPerros" style="height:48px;width:auto;"></div>
+  <p>Accesorios para mascotas con amor, calidad y estilo.</p>
+  <p>
+    <a href="https://wa.me/5493465651267" target="_blank">📱 +54 9 3465 651267</a> &nbsp;·&nbsp;
+    <a href="mailto:paraperros.arg@gmail.com">✉️ paraperros.arg@gmail.com</a> &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/paraperros.arg" target="_blank">📷 @paraperros.arg</a>
+  </p>
+  <p class="copy">© 2025 Para Perros · Hecho con 🐾 en Argentina</p>
+</footer>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a class="wa-float" href="https://wa.me/5493465651267?text=Hola!%20Vi%20su%20página%20y%20quería%20consultar%20sobre%20sus%20productos%20🐾" target="_blank">💬 ¡Hablemos!</a>
+
+</body>
+</html>
